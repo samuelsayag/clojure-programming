@@ -1,4 +1,4 @@
-# this is the shire model
+; this is the shire model
 
 (def asym-hobbit-body-parts [
   {:name "head" :size 3}
@@ -39,4 +39,11 @@
             (set [part (matching-part part)])))))))
 
 
+(defn better-symmetrize-body-part
+  "Expects a seq of maps that have a :name and :size"
+  [asym-body-parts]
+  (reduce (fn [xs x]
+            (into xs (set [x (matching-part x)])))
+          []
+          asym-body-parts))
 
